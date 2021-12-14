@@ -1,0 +1,33 @@
+.container {
+  background-color: #1d1d1d;
+  padding: 25px 0;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.copyright {
+  display: flex;
+  font-family: Poppins;
+  font-size: 15px;
+  color: #ccc;
+  transition: all 0.3s ease 0s;
+
+}
+
+.copyright > a {
+  text-decoration: none;
+  color: #1aa78e;
+}
+
+a:hover {
+  color: #fcaf01;
+  transition: ease-in-out 0.5s;
+}
+
+@media (max-width: 800px) {
+  .container > section > div {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
