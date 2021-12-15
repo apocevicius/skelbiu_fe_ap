@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import css from './RegisterForm.module.css';
+import { useHistory } from 'react-router';
 
 function RegisterForm() {
+  const history = useHistory()
   const [formSentSuccess, setFormSentSuccess] = useState(false);
 
   const formik = useFormik({
@@ -24,23 +26,24 @@ function RegisterForm() {
     }),
 
     onSubmit: async (values) => {
-      // const resp = await fetch('http://localhost:3000/register', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(values),
-      // });
+      const resp = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
       console.log('values ===', values);
-      // const data = await resp.json();
+      const data = await resp.json();
 
-      // if (data.error) {
-      //   toast.error('Please check the form');
-      // }
-      // if (data.msg) {
-      //   toast.success('Successfully registered');
-      //   setFormSentSuccess(true);
-      // }
+      if (data.error) {
+        toast.error('Please check the form');
+      }
+      if (data.msg) {
+        toast.success('Successfully registered');
+        setFormSentSuccess(true);
+        history.replace('/login')
+      }
     },
   });
   console.log(formik.values);

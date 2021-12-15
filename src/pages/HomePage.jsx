@@ -7,8 +7,9 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <Footer />
+      
       <NewListingForm />
+      <Footer />
     </div>
   );
 }

@@ -15,7 +15,7 @@ function NewListingForm() {
       formData.append('mainImage', values.mainImage);
       console.log(formData);
 
-      fetch('http://localhost:5000/api/new-listing', {
+      fetch('http://localhost:5000/api/auth/new-listing', {
         method: 'POST',
         body: formData,
       })

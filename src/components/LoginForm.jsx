@@ -1,8 +1,12 @@
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useAuthContext } from '../store/AuthContext';
 import css from './LoginForm.module.css';
 
 function LoginForm() {
+  const history = useHistory()
+  const {login} = useAuthContext
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -20,8 +24,28 @@ function LoginForm() {
     }),
     onSubmit: (values) => {
       console.log('Form data', values);
+      handleSubmit(values.email, values.password);
     },
   });
+
+  const handleSubmit = async (email, password) => {
+    const resp = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = await resp.json();
+    const { token, email: user } = data.data;
+
+    if (login(token, user)) {
+      history.replace('/ads')
+    }
+  };
 
   return (
     <section className={css.loginFormContainer}>

@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 70px;
+  padding: 0 10px;
   color: white;
   position: relative;
   flex-wrap: wrap;
@@ -33,12 +33,13 @@ div > h2 {
   font-style: normal;
   transition: all 0.4s ease-out;
   color: #111;
+  margin-right: 30px;
   padding-right: 15px;
   text-decoration: none;
   text-align: right;
 }
 
-nav:hover {
+.navLink:hover {
   color: #1aa78e;
 }
 
